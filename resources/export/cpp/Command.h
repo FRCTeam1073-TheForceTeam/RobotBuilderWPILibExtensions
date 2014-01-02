@@ -7,12 +7,9 @@
 
 \#include "Commands/Subsystem.h"
 \#include "../Robot.h"
+\#include "WPILib.h"
+\#include "../WPILibExtensions/WPILibExtensions.h"
 
-/**
- *
- *
- * @author ExampleAuthor
- */
 class #class($command.name): public Command {
 public:
 	#class($command.name)();

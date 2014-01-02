@@ -4,6 +4,7 @@
 \#define OI_H
 
 \#include "WPILib.h"
+\#include "WPILibExtensions/WPILibExtensions.h"
 
 class OI {
 private:

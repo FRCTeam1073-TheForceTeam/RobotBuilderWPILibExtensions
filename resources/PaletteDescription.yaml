@@ -213,7 +213,7 @@ Validators:
   - !UniqueValidator
     name: OI Analog Input
     fields: [Analog Pin]
-    
+
 Palette:
   - Hidden:
       - !Component
@@ -495,7 +495,7 @@ Palette:
 
   - Sensors:
       - !Component
-        name: Gyro
+        name: SmartGyro
         type: PIDSource
         help: An analog angular rate sensor.
         properties:
@@ -617,7 +617,7 @@ Palette:
           #PWMOutput("Output")
 
       - !Component
-        name: CAN Jaguar
+        name: Smart CAN Jaguar
         type: PIDOutput
         help: A speed controller that allows you to set the speed of a motor using CAN.
         properties:
@@ -679,7 +679,7 @@ Palette:
         name: Joystick
         type: Joystick
         supports: {Joystick Button: -1}
-        help: A joystick that drivers can use as input.
+        help: A configurable extension off Joystick with accessors and the ability to refelct input values.
         properties:
           - !ChoicesProperty
             name: Number
@@ -759,7 +759,6 @@ Palette:
             choices: ["1", "2", "3", "4"]
             validators: [OI Analog Input]
             default: "1"
-
   - Commands:
       - !Component
         name: Command

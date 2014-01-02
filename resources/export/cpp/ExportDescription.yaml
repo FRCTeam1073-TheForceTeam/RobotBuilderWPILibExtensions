@@ -184,9 +184,9 @@ Instructions:
 
               #variable($Name)->SetInvertedMotor(RobotDrive::kRearRightMotor, true);#end
 
-  Gyro:
+  SmartGyro:
     Defaults: "AnalogInput,Component,None"
-    ClassName: "Gyro"
+    ClassName: "SmartGyro"
     Extra: "#variable($Name)->SetSensitivity(${Sensitivity});"
     PID: "#variable($Short_Name)->PIDGet()"
   Accelerometer:
@@ -220,7 +220,7 @@ Instructions:
     ClassName: "AnalogChannel"
   Analog Input:
     Defaults: "AnalogInput,Component,None"
-    ClassName: "AnalogChannel"
+    ClassName: "StallableAnalogEncoder"
   Limit Switch:
     Defaults: "DigitalInput,Component,None"
     ClassName: "DigitalInput"
@@ -237,9 +237,9 @@ Instructions:
     ClassName: "SpeedController"
     Construction: "#variable($Name) = new ${Type}(${Output_Module_Digital}, ${Output_Channel_PWM});"
     LiveWindow: "lw->AddActuator(\"$Subsystem\", \"$Short_Name\", (${Type}*) #variable($Name));"
-  CAN Jaguar:
+  Smart CAN Jaguar:
     Defaults: "Component,None"
-    ClassName: "CANJaguar"
+    ClassName: "SmartCANJaguar"
     Construction: "#variable($Name) = new ${ClassName}($CAN_ID);"
   Servo:
     Defaults: "PWMOutput,Component,None"
@@ -274,7 +274,7 @@ Instructions:
 
   Joystick:
     Defaults: "OI,None"
-    ClassName: "Joystick"
+    ClassName: "SmartJoystick"
     Construction: "#variable($Name) = new ${ClassName}(${Number});"
     Prototype: "${ClassName}* get#class($Name)();"
     Function: >-

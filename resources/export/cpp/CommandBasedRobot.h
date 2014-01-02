@@ -4,6 +4,7 @@
 \#define _ROBOT_H
 
 \#include "WPILib.h"
+\#include "WPILibExtensions/WPILibExtensions.h"
 \#include "Commands/Command.h"
 \#include "RobotMap.h"
 \#include "LiveWindow/LiveWindow.h"

@@ -191,7 +191,7 @@ Instructions:
 
               #variable($Name).setInvertedMotor(RobotDrive.MotorType.kRearRight, true);#end
 
-  Gyro:
+  SmartGyro:
     Defaults: "AnalogInput,Component,None"
     ClassName: "Gyro"
     Extra: "#variable($Name).setSensitivity(${Sensitivity});"
@@ -250,7 +250,7 @@ Instructions:
     ClassName: "SpeedController"
     Construction: "#variable($Name) = new ${Type}(${Output_Module_Digital}, ${Output_Channel_PWM});"
     LiveWindow: "LiveWindow.addActuator(\"$Subsystem\", \"$Short_Name\", (${Type}) #variable($Name));"
-  CAN Jaguar:
+  Smart CAN Jaguar:
     Defaults: "Component,None"
     ClassName: "CANJaguar"
     Import: "import edu.wpi.first.wpilibj.can.*;"

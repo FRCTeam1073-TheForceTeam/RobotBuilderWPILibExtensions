@@ -4,27 +4,64 @@
   </head>
 
   <body>
-      <h1>Joystick</h1>
+      <h1>SmartJoystick</h1>
 
       <center><img src="../icons/Joystick.png" /></center>
+<p>A class that extends the <code>Joystick</code> class. Provides for a ton of extra functionality! Here's how to make one.</p>
 
-    <h2>What is it?</h2>
-    <p>The joystick is an input for controlling the robot.</p>
+<pre><code class="cpp">//here's a normal WPILib Joystick
+Joystick* operatorStick = new Joystick(1); //basic functionality joystick///
+//simply add the word Smart in front of Joystick and you're all set
+SmartJoystick* operatorStick = new SmartJoystick(1); //lots of functionality
+</code></pre>
 
+<pre><code>
+</code></pre>
 
-    <h2>Properties</h2>
+<h3 id="configurablejoystickmodes">Configurable Joystick Modes</h3>
 
-    <dl>
-      <dt>Number</dt>
-      <dd>The number of this joystick.</dd>
-    </dl>
+<p>A <code>SmartJoystick</code> can be set to three modes: <code>normal</code>, <code>extreme</code> and <code>cubic</code>. These modes alter the values that <code>SmartJoystick::GetX()</code> and <code>SmartJoystick::GetY()</code> return. <em>Note that all Joystick Modes support a small Dead Zone where Joystick input is ignored. This allows for the sticks to remain relatively close to a neutral position in real life, but are still neutral in the software.</em></p>
 
-    <h2>See Also</h2>
-    <ul>
-      <li>
-	<a href="https://en.wikipedia.org/wiki/Joystick" >Wikipedia</a>
-      </li>
-    </ul>
+<h3 id="normal">Normal</h3>
+
+<p>A <code>SmartJoystick</code> in the <code>normal</code> mode returns regular <code>Joystick</code> when <code>SmartJoystick::GetX()</code> and <code>SmartJoystick::GetY()</code> are called.</p>
+
+<pre><code class="cpp">operatorStick-&gt;SetJoystickMode(SmartJoystick::normal);
+float normalx = operatorStick-&gt;GetX(), normaly = operatorStick-&gt;GetY();
+</code></pre>
+
+<h3 id="extreme">Extreme</h3>
+
+<p>A <code>SmartJoystick</code> in the <code>extreme</code> mode returns a full reading if the Joystick is outside of the Dead Zone. This allows operators to quickly ramp up the value of a Joystick while nudging it only slightly. Extremely useful for making a robot sprint across the field really fast.</p>
+
+<pre><code class="cpp    ">operatorStick-&gt;SetJoystickMode(SmartJoystick::extreme);
+//stick is only nudged forward just a little bit…
+float extremey = operatorStick-&gt;GetY();    // equals 1.0
+//stick is only nudged backwards just a little bit…
+extremey = operatorStick-&gt;GetY();            //equals -1.0
+</code></pre>
+
+<h3 id="cubic">Cubic</h3>
+
+<p>This mode is a favorite with some of our drivers. It allows input to be scaled by a cubic factor to allow for a smoother acceleration rate as a joystick is moved further and further forward or back.</p>
+
+<h3 id="invertableaxis">Invertable Axis</h3>
+
+<p>Quickly invert a <code>SmartJoystick</code> Axis without having to change values all over your code. Call invert once, and your <code>SmartJoystick</code> inversion will be on any call to the Joystick's axis.</p>
+
+<pre><code class="cpp    ">float y = operatorStick-&gt;GetY();    //Get the Y value... oh no, it's upside down!!!
+operatorStick-&gt;InvertYAxis();    //Simple Call to invert the Axis, works on X, Y, and Z
+y = operatorStick-&gt;GetY();    //The Y value is now -1 times what it was earlier
+</code></pre>
+
+<h3 id="hataxis">Hat Axis</h3>
+
+<p>Many Joysticks have a hat on the top of the Joystick. Generally, these live on Axis 5 and 6 of the Joystick. With <code>SmartJoystick</code>, it's easy to get their values.</p>
+
+<pre><code class="cpp">//no more dealing with Axis Parameters
+float hatx = operatorStick-&gt;GetHatX();
+float haty = operatorStick-&gt;GetHatY();
+</code></pre>
   </body>
 
 </html>
