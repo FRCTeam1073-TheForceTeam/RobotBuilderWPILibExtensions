@@ -18,6 +18,11 @@
   export: $project/.cproject
   source: ${exporter-path}.cproject
   update: None
+
+- !File
+  export: $project/GetWPILibExtensions.bat
+  source: ${exporter-path}GetWPILibExtensions.bat
+  update: None
   
 ## Key Java Files
 - !File
