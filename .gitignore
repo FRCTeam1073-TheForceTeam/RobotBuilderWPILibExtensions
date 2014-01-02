@@ -8,3 +8,4 @@ save*.yml
 /.svn/*
 wiring*.html
 *.exec
+C/\Windriver\workspace/
