@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" type="text/css" media="screen" />
+  </head>
+
+  <body>
+      <h1>Smart CAN Jaguar</h1>
+
+      <center><img src="../icons/Smart CAN Jaguar.png" /></center> <br />
+
+    <h2>What is it?</h2>
+    
+
+    <p>A class that provides some useful functions to <code>CANJaguar</code>.</p>
+
+<h2 id="inversion">Inversion</h2>
+
+<p><code>SmartCANJaguar</code>s can easily be inverted by calling the method <code>Invert</code> on them. This usually has to happen because motors are mounted or wired differently than the code thinks they are. Usually, we'd multiply whatever we set by <code>-1</code>, but this is a recipe for some sloppy code. <strong>Inverted <code>SmartCANJaguar</code>s provide global support for inversion and in doing so they keep the code cleaner.</strong></p>
+
+<pre><code class="cpp">SmartCANJaguar* rightDrive = new SmartCANJaguar(2);    //make jag
+rightDrive-&gt;Invert();    //Invert Jag
+bool check = rightDrive-&gt;IsInverted();    //optional debug check to see if the Jag is inverted
+rightDrive-&gt;Invert();    //put it back
+
+//or, invert a SmartCANJaguar right in its constructor
+SmartCANJaguar* leftDrive = new SmartCANJaguar(1, true);    //constructed with inversion
+SmartCANJaguar* rightDrive = new SmartCANJaguar(2, false);    //constructed without inversion
+SmartCANJaguar* discLauncher = new SmartCANJaguar(3);        //constructed without inversion
+</code></pre>
+
+<h2 id="easilychangecanjaguarmodes">Easily change <code>CANJaguar</code> Modes</h2>
+
+<p>When using a <code>CANJaguar</code>, you often have to tell the cRIO how it will be used. This usually involves calling several <code>CANJaguar</code> functions in order to tell it you want to set it based off of encoder readings (<code>CANJaguar::kSpeed</code>), or by applying a percentage of allocatable voltage (<code>CANJaguar::kVoltage</code>). With <code>SmartCANJaguar</code>, these modes can be easily applied. (<em>note that encoder configuration varies from Jaguar to Jaguar, and you might have to adapt these calls to match your specific hardware configuration...</em>)</p>
+
+<pre><code class="cpp">SmartCANJaguar* leftDrive = new SmartCANJaguar(1);    //make jag
+leftDrive-&gt;ConfigureSpeedMode();    //speed mode
+//oh, no! an encoder failed - let's fall back to voltage
+leftDrive-&gt;ConfigureVoltageMode(); 
+</code></pre>
+
+<h2 id="stalldetection">Stall Detection</h2>
+
+<p><code>SmartCANJaguar</code>s implement <a href="https://github.com/FRCTeam1073-TheForceTeam/WPILibExtensions/blob/master/README.md#Stallable">Stallable</a> so they can easily be checked for Stall Detection. For more information on <code>Stallable</code>, <a href="https://github.com/FRCTeam1073-TheForceTeam/WPILibExtensions/blob/master/README.md#Stallable">click here</a>.</p>
+
+<pre><code class="cpp">//pseduo code for stall detection
+SmartCANJaguar* leftDrive = new SmartCANJaguar(1);
+leftDrive-&gt;Set(1000.0);    //drive
+while(!leftDrive-&gt;IsStall()){
+    leftDrive-&gt;ProcessVoltageData();    //update Stallable
+}
+leftDrive-&gt;Set(0.0);    //turn off motor, we have a stall
+</code></pre>
+
+<h2 id="checkifthecanjaguarexistsonthe2canbus">Check if the CANJaguar exists on the 2CAN Bus</h2>
+
+<p>To do a diagnostic check to see if the 2CAN Bus can reach your CANJaguar hardware, just call the boolean method. <code>SmartCANJaguar::ExistsOnBus()</code></p>
+
+<pre><code class="cpp">SmartCANJaguar* leftDrive = new SmartCANJaguar(1);
+if(leftDrive-&gt;ExistsOnBus()){
+    printf("This exists\n");
+}
+else{
+    printf("This doesn't exist\n");
+}
+</code></pre>
+
+<pre><code>
+</code></pre>
+
+
+    <h2>See Also</h2>
+    <ul>
+      <li>
+	<a href="https://en.wikipedia.org/wiki/CAN_bus">Wikipedia</a>
+      </li>
+      <li>
+	<a href="http://www.vexrobotics.com/217-3367.html">Jaguar</a>
+      </li>
+      <li>
+	<a href="http://content.vexrobotics.com/docs/217-3367-VEXpro_Jaguar_GettingStartedGuide.pdf">Jaguar Getting Started Guide</a>
+      </li>
+    </ul>
+  </body>
+
+</html>
