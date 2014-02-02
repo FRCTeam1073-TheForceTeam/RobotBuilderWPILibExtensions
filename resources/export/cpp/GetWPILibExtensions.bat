@@ -1,4 +1,6 @@
 @echo off
+rem this assumes your repository is tracked in git, otherwise you'll need to manually add WPILibExtensions
+title Getting WPILibExtensions
 echo this will run through everything you need to pull down the latest version of WPILibExtensions or update your local copy
 
 rem there is no harm in running through this file as many times as you'd like
@@ -9,3 +11,11 @@ rem initialize it - only has to happen once
 git submodule init
 rem and if you already have it, get the latest and greatest
 git submodule update
+
+
+echo making sure robot14 has the latest WPILibExtensions submodule index
+rem will pull the latest extensions, commit index if this is what you want
+cd WPILibExtensions
+git checkout master
+git pull
+cd ..

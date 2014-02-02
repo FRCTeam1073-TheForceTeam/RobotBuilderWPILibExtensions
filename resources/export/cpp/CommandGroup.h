@@ -7,11 +7,6 @@
 
 \#include "Commands/CommandGroup.h"
 
-/**
- *
- *
- * @author ExampleAuthor
- */
 class #class($command.name): public CommandGroup {
 public:	
 	#class($command.name)();

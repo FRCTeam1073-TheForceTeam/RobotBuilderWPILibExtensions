@@ -24,6 +24,13 @@
   source: ${exporter-path}GetWPILibExtensions.bat
   update: None
   
+- !File
+  export: $project/DeleteRobotBuilderBackupFiles.bat
+  source: ${exporter-path}DeleteRobotBuilderBackupFiles.bat
+  update: None
+
+
+
 ## Key Java Files
 - !File
   export: $project/Robot.cpp
