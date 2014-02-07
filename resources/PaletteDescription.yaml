@@ -233,7 +233,7 @@ Palette:
             name: Java Project Directory
             extension: null
             folder: true
-            default: "${home}NetBeansProjects"
+            default: "C:\\WindRiver\\workspace"
           - !BooleanProperty
             name: Use Default Java Package
             default: true
