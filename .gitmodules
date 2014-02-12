@@ -1,0 +1,4 @@
+[submodule "Website"]
+	path = Website
+	url = https://github.com/FRCTeam1073-TheForceTeam/RobotBuilderWPILibExtensions.git
+	branch = gh-pages
